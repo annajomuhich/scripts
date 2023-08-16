@@ -81,6 +81,8 @@ do
   rm ${file}_ChineseLong_DNA_Bcin.sam
   #navigate back to fastq location
   cd ../../fastq
+  #clean out fastqs
+  rm ${file}*
 done
 
 conda deactivate
