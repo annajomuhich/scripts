@@ -8,4 +8,4 @@
 #SBATCH -n 8
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
-bash /home/ajmuhich/scripts/alignment
+bash /home/ajmuhich/scripts/2_alignment.sh
