@@ -13,11 +13,11 @@ conda activate hisat2
 #conda install hisat2
 
 ####### First, generate a list of the samples you want to run and save as file_list.txt
-cd alignment
+cd fastq2readcounts
 #assign your file_list.txt to files variable
 readarray -t files < file_list.txt
 
-####### LOOP UNDER CONSTRUCTION
+####### LOOP to align each sample 2 fastqs to host and Bcin genome, convert to .bam, and remove fastqs
 cd fastq
 for file in "${files[@]}"
 do
@@ -84,6 +84,7 @@ do
   #clean out fastqs
   rm ${file}*
 done
-
+#navigate back to main
+cd ../
 conda deactivate
 ########## Proceed to readcounts.R
