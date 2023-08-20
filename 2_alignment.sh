@@ -36,12 +36,12 @@ do
   cd ${file}
   #perform Host alignment
   echo ' '
-  echo 'aligning' $file 'to Chinese Long DNA genome...'
+  echo 'aligning' $file 'to Host genome...'
   echo ' '
   hisat2  \
      -p 8 \
       -t \
-      --summary-file 'ChineseLong_DNA_log.txt' \
+      --summary-file 'Host_log.txt' \
       -I 5 \
       -5 10 \
       -3 5 \
@@ -49,36 +49,36 @@ do
       -1 ../../fastq/${file}_L003_R1_001.fastq \
       -2 ../../fastq/${file}_L003_R2_001.fastq \
       --score-min L,0,-0.6 \
-      -S ${file}_ChineseLong_DNA.sam \
-      --un-conc ../../fastq/${file}_ChineseLong_DNA_unmapped.fastq
+      -S ${file}_Host.sam \
+      --un-conc ../../fastq/${file}_unmapped.fastq
   #convert Host sam to bam
   echo ' '
   echo 'converting .sam to .bam...'
   echo ' '
-  samtools view -b ${file}_ChineseLong_DNA.sam > ${file}_ChineseLong_DNA.bam
-  rm ${file}_ChineseLong_DNA.sam
+  samtools view -b ${file}_Host.sam > ${file}_Host.bam
+  rm ${file}_Host.sam
   #perform Bcin alignment
   echo ' '
-  echo 'aligning ChineseLong DNA unmapped reads from' $file 'to Bc genome...'
+  echo 'aligning Host unmapped reads from' $file 'to Bcin genome...'
   echo ' '
   hisat2 \
     -p 8 \
     -t \
-    --summary-file 'Bcin_ChineseLong_DNA_log.txt' \
+    --summary-file 'Bcin_log.txt' \
     -I 5 \
     -5 10 \
     -3 5 \
     -x ../../reference/Bcin_toplevelDNA_index/Bcin_toplevelDNA \
-    -1 ../../fastq/${file}_ChineseLong_DNA_unmapped.1.fastq \
-    -2 ../../fastq/${file}_ChineseLong_DNA_unmapped.2.fastq \
+    -1 ../../fastq/${file}_unmapped.1.fastq \
+    -2 ../../fastq/${file}_unmapped.2.fastq \
     --score-min L,0,-0.85 \
-    -S ${file}_ChineseLong_DNA_Bcin.sam
+    -S ${file}_Bcin.sam
   #convert Bcin sam to bam
   echo ' '
   echo 'converting .sam to .bam...'
   echo ' '
-  samtools view -b ${file}_ChineseLong_DNA_Bcin.sam > ${file}_ChineseLong_DNA_Bcin.bam
-  rm ${file}_ChineseLong_DNA_Bcin.sam
+  samtools view -b ${file}_Bcin.sam > ${file}_Bcin.bam
+  rm ${file}_Bcin.sam
   #navigate back to fastq location
   cd ../../fastq
   #clean out fastqs
