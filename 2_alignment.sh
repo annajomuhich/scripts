@@ -17,6 +17,11 @@ cd fastq2readcounts
 #assign your file_list.txt to files variable
 readarray -t files < file_list.txt
 
+#set up needed directories
+mkdir fastq
+mkdir bams
+mkdir readcounts
+
 ####### LOOP to align each sample 2 fastqs to host and Bcin genome, convert to .bam, and remove fastqs
 cd fastq
 for file in "${files[@]}"
