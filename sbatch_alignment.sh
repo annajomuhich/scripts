@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -D /home/ajmuhich/alignment
+#SBATCH -D /home/ajmuhich/fastq2readcounts
 #SBATCH -o /home/ajmuhich/slurm-log/alignment_stdout-%j.txt
 #SBATCH -e /home/ajmuhich/slurm-log/alignment_stderr-%j.txt
 #SBATCH -J alignment
@@ -10,12 +10,12 @@
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
 #run alignments
-bash /home/ajmuhich/scripts/2_alignment.sh
+bash scripts/2_alignment.sh
 
 #generate alignment_summary.csv
-bash /home/ajmuhich/scripts/2a_alignment_summary1.sh
+bash scripts/2a_alignment_summary1.sh
 module load R
-R /home/ajmuhich/scripts/2b_alignment_summary2.R
+R scripts/2b_alignment_summary2.R
 
 #generate readcounts from .bams
-R /home/ajmuhich/scripts/3_readcounts.R
+R scripts/3_readcounts.R
