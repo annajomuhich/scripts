@@ -27,8 +27,8 @@ cd fastq
 for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
-  wget "slimsdata.genomecenter.ucdavis.edu/Data/gyfdugxst/Unaligned/Project_DKAA_GSLOHBRASS/${file}_L003_R1_001.fastq.gz"
-  wget "slimsdata.genomecenter.ucdavis.edu/Data/gyfdugxst/Unaligned/Project_DKAA_GSLOHBRASS/${file}_L003_R2_001.fastq.gz"
+  wget -nv "slimsdata.genomecenter.ucdavis.edu/Data/gyfdugxst/Unaligned/Project_DKAA_GSLOHBRASS/${file}_L003_R1_001.fastq.gz"
+  wget -nv "slimsdata.genomecenter.ucdavis.edu/Data/gyfdugxst/Unaligned/Project_DKAA_GSLOHBRASS/${file}_L003_R2_001.fastq.gz"
   # unzip Data
   echo ' '
   echo 'unzipping' $file '...'
