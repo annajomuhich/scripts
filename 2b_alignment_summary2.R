@@ -1,5 +1,7 @@
 library(tidyverse)
 
+setwd("bams")
+
 df <- read.csv("alignment_summary.csv", header = F)
 
 #sep bcin and plant alignments
