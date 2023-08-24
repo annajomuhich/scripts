@@ -112,7 +112,7 @@ for (i in 1:length(count_list)) {
   colnames(counts) <- c("transcript", paste0(spl_id))         #simplify the column name with the sample ID
   new_object_name <- paste0("counts_", spl_id)                #make a new object name with the sample ID
   assign(new_object_name, counts)                             #put the finished counts df in an object with its new name
-  if (grepl("A$", new_object_name)) {                       #check if sample name contains Ath or Bcin.
+  if (grepl("Host$", new_object_name)) {                       #check if sample name contains Ath or Bcin.
     Ath_spl_list <- append(Ath_spl_list, list(counts))        #add the newly generated df to its corresponding list.
   }
   if (grepl("Bcin$", new_object_name)) {
