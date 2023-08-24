@@ -139,6 +139,10 @@ for (i in 2:length(Bcin_spl_list)) {
                                    by = "transcript")
 }
 
+#clean up column names for samples
+colnames(counts_Host_combined) <- gsub("_Host", "", colnames(counts_Host_combined))
+colnames(counts_Bcin_combined) <- gsub("_Bcin", "", colnames(counts_Bcin_combined))
+
 #save em!
 write.csv(x = counts_Host_combined, file = "../readcounts/Host_readcounts.csv", row.names = F)
 write.csv(x = counts_Bcin_combined, file = "../readcounts/Bcin_readcounts.csv", row.names = F)
