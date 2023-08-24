@@ -55,7 +55,7 @@ library(tools)
 ######## Loop for getting read counts that discerns between Ath and Bcin bams.
 
 #start where your sample directories containing .bams are
-#setwd("./bams")
+setwd("./bams")
 
 # get the list of subdirectories in the main directory
 subdirs <- setdiff(list.dirs(), ".")  # remove "." from subdirs
