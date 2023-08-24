@@ -52,7 +52,7 @@ library(tools)
 # export(gff,"Botrytis_cinerea.ASM83294v1.5.gtf",format="gtf")
 
 
-######## Loop for getting read counts that discerns between Ath and Bcin bams.
+######## Loop for getting read counts that discerns between Host and Bcin bams.
 
 #start where your sample directories containing .bams are
 setwd("./bams")
@@ -72,7 +72,7 @@ for (subdir in subdirs) {
     # Check if file is a BAM file mapped to the plant genome (these files end in "Host.bam")
     if (grepl("Host.bam$", file_name)) {
       
-      # Run featureCounts on the file with Ath genes
+      # Run featureCounts on the file with Host genes
       count_matrix <- featureCounts(file = file_name,
                                     annot.ext = "../../reference/ChineseLong_v3.gtf",
                                     isGTFAnnotationFile = TRUE,
@@ -96,7 +96,7 @@ for (subdir in subdirs) {
 }
 
 #make an empty vector for sample list output
-Ath_spl_list <- list()
+Host_spl_list <- list()
 Bcin_spl_list <- list()
 
 ######### Loop to get RSubread output into dataframes and reformatted
@@ -107,13 +107,13 @@ for (i in 1:length(count_list)) {
                                                               #convert transcripts from rownames to column
   counts <- rownames_to_column(counts,
                                var = "transcript")
-  spl_id <- colnames(counts[2]) %>%                           #creates a simple sample ID w/ the plate ID and whether its Ath/Bcin
+  spl_id <- colnames(counts[2]) %>%                           #creates a simple sample ID w/ the plate ID and whether its Host/Bcin
     str_replace("(.*)_(.*).bam", "\\1_\\2")                   #MAKE CHANGES HERE for your naming convention if you want
   colnames(counts) <- c("transcript", paste0(spl_id))         #simplify the column name with the sample ID
   new_object_name <- paste0("counts_", spl_id)                #make a new object name with the sample ID
   assign(new_object_name, counts)                             #put the finished counts df in an object with its new name
-  if (grepl("Host$", new_object_name)) {                       #check if sample name contains Ath or Bcin.
-    Ath_spl_list <- append(Ath_spl_list, list(counts))        #add the newly generated df to its corresponding list.
+  if (grepl("Host$", new_object_name)) {                       #check if sample name contains Host or Bcin.
+    Host_spl_list <- append(Host_spl_list, list(counts))        #add the newly generated df to its corresponding list.
   }
   if (grepl("Bcin$", new_object_name)) {
     Bcin_spl_list <- append(Bcin_spl_list, list(counts))
@@ -123,13 +123,13 @@ for (i in 1:length(count_list)) {
 ######## MERGE the counts of diff samples.
 
 #Put the first df in the list into the df
-counts_Ath_combined <- Ath_spl_list[[1]]
+counts_Host_combined <- Host_spl_list[[1]]
 counts_Bcin_combined <- Bcin_spl_list[[1]]
 
-#Loop to join the remaining Ath dfs together
-for (i in 2:length(Ath_spl_list)) {
-  counts_Ath_combined <- full_join(counts_Ath_combined,
-                                   Ath_spl_list[[i]],
+#Loop to join the remaining Host dfs together
+for (i in 2:length(Host_spl_list)) {
+  counts_Host_combined <- full_join(counts_Host_combined,
+                                   Host_spl_list[[i]],
                                    by = "transcript")
 }
 #Loop to join the remaining Bcin dfs together
@@ -140,5 +140,5 @@ for (i in 2:length(Bcin_spl_list)) {
 }
 
 #save em!
-write.csv(x = counts_Ath_combined, file = "../readcounts/Host_readcounts.csv")
-write.csv(x = counts_Bcin_combined, file = "../readcounts/Bcin_readcounts.csv")
+write.csv(x = counts_Host_combined, file = "../readcounts/Host_readcounts.csv", row.names = F)
+write.csv(x = counts_Bcin_combined, file = "../readcounts/Bcin_readcounts.csv", row.names = F)
