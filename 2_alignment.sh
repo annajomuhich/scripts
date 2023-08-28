@@ -27,8 +27,8 @@ cd fastq
 for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_1_R1.fastq.gz"
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_1_R2.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
   # unzip Data
   echo ' '
   echo 'unzipping' $file '...'
@@ -51,8 +51,8 @@ do
       -5 10 \
       -3 5 \
       -x  ../../reference/ChineseLong_DNA_index/ChineseLong_DNA  \
-      -1 ../../fastq/${file}_1_R1.fastq \
-      -2 ../../fastq/${file}_1_R2.fastq \
+      -1 ../../fastq/${file}_R1.fastq \
+      -2 ../../fastq/${file}_R2.fastq \
       --score-min L,0,-0.6 \
       -S ${file}_Host.sam \
       --un-conc ../../fastq/${file}_unmapped.fastq
