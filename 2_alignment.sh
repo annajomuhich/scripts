@@ -51,8 +51,9 @@ do
       -5 10 \
       -3 5 \
       -x  ../../reference/ChineseLong_DNA_index/ChineseLong_DNA  \
-      -1 ../../fastq/${file}_R1.fastq \
-      -2 ../../fastq/${file}_R2.fastq \
+#      -1 ../../fastq/${file}_R1.fastq \
+#      -2 ../../fastq/${file}_R2.fastq \
+      -U ../../fastq/${file}_R1.fastq \
       --score-min L,0,-0.85 \
       -S ${file}_Host.sam \
       --un-conc ../../fastq/${file}_unmapped.fastq
@@ -74,8 +75,9 @@ do
     -5 10 \
     -3 5 \
     -x ../../reference/Bcin_toplevelDNA_index/Bcin_toplevelDNA \
-    -1 ../../fastq/${file}_unmapped.1.fastq \
-    -2 ../../fastq/${file}_unmapped.2.fastq \
+#    -1 ../../fastq/${file}_unmapped.1.fastq \
+#    -2 ../../fastq/${file}_unmapped.2.fastq \
+    -U ../../fastq/${file}_unmapped.fastq \
     --score-min L,0,-0.85 \
     -S ${file}_Bcin.sam
   #convert Bcin sam to bam
