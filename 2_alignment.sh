@@ -18,7 +18,7 @@ cd fastq2readcounts
 readarray -t files < file_list.txt
 
 #set up needed directories
-mkdir fastq
+#mkdir fastq
 mkdir bams
 mkdir readcounts
 
@@ -27,13 +27,13 @@ cd fastq
 for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
+  #wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
+  #wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
   # unzip Data
-  echo ' '
-  echo 'unzipping' $file '...'
-  echo ' '
-  gunzip *.gz
+  #echo ' '
+  #echo 'unzipping' $file '...'
+  #echo ' '
+  #gunzip *.gz
   #navigate to bams output
   cd ../bams
   #make new directory for the file
@@ -51,9 +51,9 @@ do
       -5 10 \
       -3 5 \
       -x  ../../reference/ChineseLong_DNA_index/ChineseLong_DNA  \
-#      -1 ../../fastq/${file}_R1.fastq \
-#      -2 ../../fastq/${file}_R2.fastq \
-      -U ../../fastq/${file}_R1.fastq \
+      -1 ../../fastq/${file}_R1.fastq \
+      -2 ../../fastq/${file}_R2.fastq \
+#      -U ../../fastq/${file}_R1.fastq \
       --score-min L,0,-0.85 \
       -S ${file}_Host.sam \
       --un-conc ../../fastq/${file}_unmapped.fastq
@@ -75,9 +75,9 @@ do
     -5 10 \
     -3 5 \
     -x ../../reference/Bcin_toplevelDNA_index/Bcin_toplevelDNA \
-#    -1 ../../fastq/${file}_unmapped.1.fastq \
-#    -2 ../../fastq/${file}_unmapped.2.fastq \
-    -U ../../fastq/${file}_unmapped.fastq \
+    -1 ../../fastq/${file}_unmapped.1.fastq \
+    -2 ../../fastq/${file}_unmapped.2.fastq \
+#    -U ../../fastq/${file}_unmapped.fastq \
     --score-min L,0,-0.85 \
     -S ${file}_Bcin.sam
   #convert Bcin sam to bam
