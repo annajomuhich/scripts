@@ -1,6 +1,6 @@
 ################# QC - MultiQC
 ################# Anna Jo Muhich
-################# February 2023
+################# September 2023
 
 ### Versions
 #pip 23.0.1 from /usr/local/lib/python3.9/site-packages/pip (python 3.9)
@@ -8,14 +8,36 @@
 #multiqc, version 1.12
 
 ### Set up environment
+module load conda
 #conda create -n MultiQC
 conda activate MultiQC
+#conda install MultiQC
 
-# Put your fastq files to run into the /input/AtBcfastq directory
-cd ~/UCDavis/Klieb_Lab/Projects/Cucurbit/Cuc_RNAseq_Pilot/input/PlantBcfastq
+### Generate a list of the samples you want to run and save as file_list.txt
+cd fastq2readcounts
+#assign your file_list.txt to files variable
+readarray -t files < file_list.txt
+
+### Get fastq files
+# set up symlink to your fastq files that is hosted in shared lab directory
+ln -s /group/kliebengrp/ajmuhich/fastq fastq
+cd fastq
+# loop to download fastq files using your file list
+for file in "${files[@]}"
+do
+  # Download R1 and R2 for the sample. Change path as needed
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
+done
+# unzip the files
 gunzip *.fastq.gz
-mkdir ../../qc/fastqc_out
-fastqc --threads 3 -o ../../qc/fastqc_out *.fastq 
+
+### Run QC
+# make qc directories
+mkdir ../fastq2readcounts/qc
+mkdir ../fastq2readcounts/qc/fastqc_out
+# run fastqc
+fastqc --threads 3 -o ../fastq2readcounts/qc/fastqc_out *.fastq 
 cd ../../qc
 multiqc fastqc_out
 
