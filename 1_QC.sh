@@ -12,6 +12,7 @@ module load conda
 #conda create -n MultiQC
 conda activate MultiQC
 #conda install MultiQC
+#conda install fastqc
 
 ### Generate a list of the samples you want to run and save as file_list.txt
 cd fastq2readcounts
@@ -37,7 +38,7 @@ gunzip *.fastq.gz
 mkdir ~/fastq2readcounts/qc
 mkdir ~/fastq2readcounts/qc/fastqc_out
 # run fastqc
-fastqc --threads 3 -o ~/fastq2readcounts/qc/fastqc_out *.fastq 
+fastqc --threads 8 -o ~/fastq2readcounts/qc/fastqc_out *.fastq 
 #cd ~/fastq2readcounts/qc
 #multiqc fastqc_out
 
