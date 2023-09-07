@@ -19,7 +19,9 @@ readarray -t files < file_list.txt
 
 #set up needed directories
 #mkdir fastq
-mkdir bams
+#mkdir bams
+#make symlink to bams on shared storage
+ln -s /group/kliebengrp/ajmuhich/bams bams
 mkdir readcounts
 
 ####### LOOP to align each sample 2 fastqs to host and Bcin genome, convert to .bam, and remove fastqs
@@ -50,13 +52,13 @@ do
       -I 5 \
       -5 10 \
       -3 5 \
-      -x  ../../reference/ChineseLong_DNA_index/ChineseLong_DNA  \
-      -1 ../../fastq/${file}_R1.fastq \
-      -2 ../../fastq/${file}_R2.fastq \
+      -x  ~/fastq2readcounts/reference/ChineseLong_DNA_index/ChineseLong_DNA  \
+      -1 ~/fastq2readcounts/fastq/${file}_R1.fastq \
+      -2 ~/fastq2readcounts/fastq/${file}_R2.fastq \
 #      -U ../../fastq/${file}_R1.fastq \
       --score-min L,0,-0.85 \
       -S ${file}_Host.sam \
-      --un-conc ../../fastq/${file}_unmapped.fastq
+      --un-conc ~/fastq2readcounts/fastq/${file}_unmapped.fastq
   #convert Host sam to bam
   echo ' '
   echo 'converting .sam to .bam...'
@@ -74,9 +76,9 @@ do
     -I 5 \
     -5 10 \
     -3 5 \
-    -x ../../reference/Bcin_toplevelDNA_index/Bcin_toplevelDNA \
-    -1 ../../fastq/${file}_unmapped.1.fastq \
-    -2 ../../fastq/${file}_unmapped.2.fastq \
+    -x ~/fastq2readcounts/reference/Bcin_toplevelDNA_index/Bcin_toplevelDNA \
+    -1 ~/fastq2readcounts/fastq/${file}_unmapped.1.fastq \
+    -2 ~/fastq2readcounts/fastq/${file}_unmapped.2.fastq \
 #    -U ../../fastq/${file}_unmapped.fastq \
     --score-min L,0,-0.85 \
     -S ${file}_Bcin.sam
@@ -87,11 +89,11 @@ do
   samtools view -b ${file}_Bcin.sam > ${file}_Bcin.bam
   rm ${file}_Bcin.sam
   #navigate back to fastq location
-  cd ~fastq2readcounts/fastq
+  cd ~/fastq2readcounts/fastq
   #clean out fastqs
   #rm ${file}*
 done
 #navigate back to main
-cd ../
+cd ~/fastq2readcounts/
 conda deactivate
 ########## Proceed to readcounts.R
