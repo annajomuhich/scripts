@@ -9,6 +9,9 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
+#run qc
+bash scripts/1_QC.sh
+
 #run alignments
 bash scripts/2_alignment.sh
 
