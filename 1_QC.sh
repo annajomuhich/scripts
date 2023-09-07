@@ -34,15 +34,15 @@ gunzip *.fastq.gz
 
 ### Run QC
 # make qc directories
-mkdir ../qc
-mkdir ../qc/fastqc_out
+mkdir ~/fastq2readcounts/qc
+mkdir ~/fastq2readcounts/qc/fastqc_out
 # run fastqc
-fastqc --threads 3 -o ../qc/fastqc_out *.fastq 
-cd ../qc
+fastqc --threads 3 -o ~/fastq2readcounts/qc/fastqc_out *.fastq 
+cd ~/fastq2readcounts/qc
 multiqc fastqc_out
 
 #nav back to fastq2readcounts to proceed
-cd ../
+cd ~/fastq2readcounts/
 conda deactivate
 
 ### Proceed to alignment.sh
