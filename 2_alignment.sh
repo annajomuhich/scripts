@@ -89,7 +89,7 @@ do
   #navigate back to fastq location
   cd ../../fastq
   #clean out fastqs
-  rm ${file}*
+  #rm ${file}*
 done
 #navigate back to main
 cd ../
