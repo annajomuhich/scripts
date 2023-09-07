@@ -35,7 +35,7 @@ do
   #echo ' '
   #gunzip *.gz
   #navigate to bams output
-  cd ../bams
+  cd ~/fastq2readcounts/bams
   #make new directory for the file
   mkdir ${file}
   cd ${file}
@@ -87,7 +87,7 @@ do
   samtools view -b ${file}_Bcin.sam > ${file}_Bcin.bam
   rm ${file}_Bcin.sam
   #navigate back to fastq location
-  cd ../../fastq
+  cd ~fastq2readcounts/fastq
   #clean out fastqs
   #rm ${file}*
 done
