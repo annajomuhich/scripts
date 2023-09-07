@@ -38,8 +38,8 @@ mkdir ~/fastq2readcounts/qc
 mkdir ~/fastq2readcounts/qc/fastqc_out
 # run fastqc
 fastqc --threads 3 -o ~/fastq2readcounts/qc/fastqc_out *.fastq 
-cd ~/fastq2readcounts/qc
-multiqc fastqc_out
+#cd ~/fastq2readcounts/qc
+#multiqc fastqc_out
 
 #nav back to fastq2readcounts to proceed
 cd ~/fastq2readcounts/
