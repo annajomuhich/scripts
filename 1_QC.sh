@@ -21,6 +21,7 @@ readarray -t files < file_list.txt
 
 ### Get fastq files
 # set up symlink to your fastq files that is hosted in shared lab directory
+mkdir /group/kliebengrp/ajmuhich/fastq
 ln -s /group/kliebengrp/ajmuhich/fastq fastq
 cd fastq
 # loop to download fastq files using your file list
