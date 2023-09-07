@@ -21,6 +21,7 @@ readarray -t files < file_list.txt
 #mkdir fastq
 #mkdir bams
 #make symlink to bams on shared storage
+mkdir /group/kliebengrp/ajmuhich/bams
 ln -s /group/kliebengrp/ajmuhich/bams bams
 mkdir readcounts
 
