@@ -18,7 +18,7 @@
 #generate alignment_summary.csv
 #bash scripts/2a_alignment_summary1.sh
 module load R
-R CMD BATCH scripts/2b_alignment_summary2.R
+#R CMD BATCH scripts/2b_alignment_summary2.R
 
 #generate readcounts from .bams
 R CMD BATCH scripts/3_readcounts.R
