@@ -11,6 +11,7 @@ module load conda
 #conda create -n hisat2
 conda activate hisat2
 #conda install hisat2
+#conda install samtools
 
 ####### First, generate a list of the samples you want to run and save as file_list.txt
 cd fastq2readcounts
