@@ -1,0 +1,1 @@
+tar -czvf Bos1_fastq.tar.gz fastq
