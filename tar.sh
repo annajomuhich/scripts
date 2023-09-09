@@ -1,1 +1,1 @@
-tar -czvf Bos1_fastq.tar.gz fastq
+tar -czvf Bos1_bams.tar.gz bams
