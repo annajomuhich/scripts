@@ -1,3 +1,6 @@
+################# Sequence Trimming - Trimmomatic
+################# Anna Jo Muhich
+################# September 2023
 
 ### Set up environment
 #conda create -n trimmomatic
