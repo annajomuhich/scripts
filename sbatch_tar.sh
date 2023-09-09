@@ -9,5 +9,5 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
-bash scripts/tar.sh
+bash ~/fastq2readcounts/scripts/tar.sh
 
