@@ -8,33 +8,13 @@
 #multiqc, version 1.12
 
 ### Set up environment
-module load conda
 #conda create -n MultiQC
 conda activate MultiQC
 #conda install MultiQC
 #conda install fastqc
 
-### Generate a list of the samples you want to run and save as file_list.txt
-cd fastq2readcounts
-#assign your file_list.txt to files variable
-readarray -t files < file_list.txt
-
-### Get fastq files
-# set up symlink to your fastq files that is hosted in shared lab directory
-mkdir /group/kliebengrp/ajmuhich/fastq
-ln -s /group/kliebengrp/ajmuhich/fastq fastq
-cd fastq
-# loop to download fastq files using your file list
-for file in "${files[@]}"
-do
-  # Download R1 and R2 for the sample. Change path as needed
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
-done
-# unzip the files
-gunzip *.fastq.gz
-
 ### Run QC
+cd fastq
 # make qc directories
 mkdir ~/fastq2readcounts/qc
 mkdir ~/fastq2readcounts/qc/fastqc_out
