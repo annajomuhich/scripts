@@ -34,7 +34,7 @@ do
   echo 'Trimming' $file '...'
   echo ' '
   trimmomatic PE -threads 8 ${file}_R1.fastq ${file}_R2.fastq \
-  ${file}_R1_trimmed_paired.fastq ${file}R1_trimmed_unpaired.fastq \
+  ${file}_R1_trimmed_paired.fastq ${file}_R1_trimmed_unpaired.fastq \
   ${file}_R2_trimmed_paired.fastq ${file}_R2_trimmed_unpaired.fastq \
   ILLUMINACLIP:~/fastq2readcounts/reference/adapters.fa:2:30:10 \
   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:20
