@@ -47,7 +47,7 @@ do
   ILLUMINACLIP:reference/adapters.fa:2:30:10 \
   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:20
   #relocate output fastqs
-  mv *paired.fastq ~/fastq2readcounts/fastq
+  mv *_paired.fastq ~/fastq2readcounts/fastq
   mv *unpaired.fastq ~/fastq2readcounts/unpaired_fastq
 done
 
