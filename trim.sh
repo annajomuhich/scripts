@@ -4,6 +4,7 @@
 
 ### Set up environment
 #conda create -n trimmomatic
+eval "$(conda shell.bash hook)"
 conda activate trimmomatic
 #conda install -c bioconda trimmomatic
 

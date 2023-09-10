@@ -9,6 +9,7 @@
 
 ### Set up environment
 #conda create -n MultiQC
+eval "$(conda shell.bash hook)"
 conda activate MultiQC
 #conda install MultiQC
 #conda install fastqc

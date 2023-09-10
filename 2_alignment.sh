@@ -8,6 +8,7 @@
 
 ###Set up environment
 #conda create -n hisat2
+eval "$(conda shell.bash hook)"
 conda activate hisat2
 #conda install hisat2
 #conda install samtools
