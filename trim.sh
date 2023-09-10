@@ -27,28 +27,24 @@ readarray -t files < file_list.txt
 # unzip the files
 #gunzip *.fastq.gz
 
+mkdir /group/kliebengrp/ajmuhich/fastq
+ln -s /group/kliebengrp/ajmuhich/fastq fastq
+
+mkdir /group/kliebengrp/ajmuhich/unpaired_fastq
+ln -s /group/kliebengrp/ajmuhich/unpaired_fastq unpaired_fastq
+
 ### run trimmomatic
 for file in "${files[@]}"
 do
   echo ' '
   echo 'Trimming' $file '...'
   echo ' '
-  trimmomatic PE -threads 8 ${file}_R1.fastq ${file}_R2.fastq \
-  ${file}_R1_trimmed_paired.fastq ${file}_R1_trimmed_unpaired.fastq \
-  ${file}_R2_trimmed_paired.fastq ${file}_R2_trimmed_unpaired.fastq \
-  ILLUMINACLIP:~/fastq2readcounts/reference/adapters.fa:2:30:10 \
+  trimmomatic PE -threads 8 /raw_fastq/${file}_R1.fastq /raw_fastq/${file}_R2.fastq \
+  /fastq/${file}_R1_trimmed_paired.fastq /unpaired_fastq/${file}_R1_trimmed_unpaired.fastq \
+  /fastq/${file}_R2_trimmed_paired.fastq /unpaired_fastq${file}_R2_trimmed_unpaired.fastq \
+  ILLUMINACLIP:reference/adapters.fa:2:30:10 \
   LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:20
 done
-
-### reorganize fastqs
-#move trimmed paired fastq to a new directory for downstream work
-mkdir /group/kliebengrp/ajmuhich/fastq
-ln -s /group/kliebengrp/ajmuhich/fastq fastq
-mv *trimmed_paired.fastq fastq
-#move trimmed unpaired fastq to a new directory for archival
-mkdir /group/kliebengrp/ajmuhich/unpaired_fastq
-ln -s /group/kliebengrp/ajmuhich/unpaired_fastq unpaired_fastq
-mv *trimmed_unpaired.fastq unpaired_fastq
 
 ### compress unused fastqs to conserve space
 cd ~/fastq2readcounts
