@@ -10,22 +10,15 @@
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
 module load conda
-conda init bash
 
 #run trimmomatic
-conda activate trimmomatic
 bash scripts/trim.sh
-conda deactivate
 
 #run qc
-conda activate MultiQC
 bash scripts/1_QC.sh
-conda deactivate
 
 #run alignments
-conda activate hisat2
 bash scripts/2_alignment.sh
-conda deactivate
 
 #generate alignment_summary.csv
 bash scripts/2a_alignment_summary1.sh
