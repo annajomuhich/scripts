@@ -7,39 +7,28 @@
 #hisat2 version 2.2.1
 
 ###Set up environment
-module load conda
 #conda create -n hisat2
 conda activate hisat2
 #conda install hisat2
 #conda install samtools
 
 ####### First, generate a list of the samples you want to run and save as file_list.txt
-cd fastq2readcounts
+cd ~/fastq2readcounts
 #assign your file_list.txt to files variable
 readarray -t files < file_list.txt
 
 #set up needed directories
-#mkdir fastq
-#mkdir bams
 #make symlink to bams on shared storage
 mkdir /group/kliebengrp/ajmuhich/bams
 ln -s /group/kliebengrp/ajmuhich/bams bams
 mkdir readcounts
 
-####### LOOP to align each sample 2 fastqs to host and Bcin genome, convert to .bam, and remove fastqs
-cd fastq
+#navigate to bams output
+cd ~/fastq2readcounts/bams
+
+####### LOOP to align each sample 2 fastqs to host and Bcin genome, convert to .bam
 for file in "${files[@]}"
 do
-  # Download R1 and R2 for the sample. Change path as needed
-  #wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
-  #wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
-  # unzip Data
-  #echo ' '
-  #echo 'unzipping' $file '...'
-  #echo ' '
-  #gunzip *.gz
-  #navigate to bams output
-  cd ~/fastq2readcounts/bams
   #make new directory for the file
   mkdir ${file}
   cd ${file}
@@ -55,8 +44,8 @@ do
       -5 10 \
       -3 5 \
       -x  ~/fastq2readcounts/reference/ChineseLong_DNA_index/ChineseLong_DNA  \
-      -1 ~/fastq2readcounts/fastq/${file}_R1.fastq \
-      -2 ~/fastq2readcounts/fastq/${file}_R2.fastq \
+      -1 ~/fastq2readcounts/fastq/${file}_R1_trimmed_paired.fastq\
+      -2 ~/fastq2readcounts/fastq/${file}_R2_trimmed_paired.fastq \
       --score-min L,0,-0.85 \
       -S ${file}_Host.sam \
       --un-conc ~/fastq2readcounts/fastq/${file}_unmapped.fastq
@@ -88,11 +77,10 @@ do
   echo ' '
   samtools view -b ${file}_Bcin.sam > ${file}_Bcin.bam
   rm ${file}_Bcin.sam
-  #navigate back to fastq location
-  cd ~/fastq2readcounts/fastq
-  #clean out fastqs
-  #rm ${file}*
+  #navigate back to bams
+  cd ~/fastq2readcounts/bams
 done
+
 #navigate back to main
 cd ~/fastq2readcounts/
 conda deactivate
