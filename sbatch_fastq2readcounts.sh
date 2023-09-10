@@ -9,6 +9,11 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
+module load conda
+
+#run trimmomatic
+bash scripts/trim.sh
+
 #run qc
 bash scripts/1_QC.sh
 
