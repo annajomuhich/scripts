@@ -10,6 +10,7 @@
 #SBATCH --mail-user=ajmuhich@ucdavis.edu
 
 module load conda
+conda init bash
 
 #run trimmomatic
 bash scripts/trim.sh
