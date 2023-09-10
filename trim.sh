@@ -54,6 +54,8 @@ done
 ### compress unused fastqs to conserve space
 cd ~/fastq2readcounts
 tar -czvf raw_fastq.tar.gz raw_fastq
+rm -r raw_fastq
 tar -czvf unpaired_fastq.tar.gz unpaired_fastq
+rm -r unpaired_fastq
 
 conda deactivate
