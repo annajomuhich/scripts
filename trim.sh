@@ -30,6 +30,7 @@ readarray -t files < file_list.txt
 # unzip the files
 #gunzip *.fastq.gz
 #test change
+#test change2
 
 ### Make directories for processed fastqs
 cd ~/fastq2readcounts
