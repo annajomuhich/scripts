@@ -26,6 +26,19 @@ multiqc fastqc_out
 
 #nav back to fastq2readcounts to proceed
 cd ~/fastq2readcounts/
+
+### Run QC on raw fastq
+cd raw_fastq
+# make qc directories
+mkdir ~/fastq2readcounts/qc_raw
+mkdir ~/fastq2readcounts/qc_raw/fastqc_out
+# run fastqc
+fastqc --threads 8 -o ~/fastq2readcounts/qc_raw/fastqc_out *.fastq 
+cd ~/fastq2readcounts/qc_raw
+multiqc fastqc_out
+
+#nav back to fastq2readcounts to proceed
+cd ~/fastq2readcounts/
 conda deactivate
 
 ### Proceed to alignment.sh
