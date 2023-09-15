@@ -24,13 +24,11 @@ cd raw_fastq
 for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R1.fastq.gz"
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/04p07y38wc/Unaligned/Project_DKAM_BOS_1/${file}_R2.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/b59n2eqejj/Unaligned/Project_DKAM_ZE_1/${file}_R1.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/b59n2eqejj/Unaligned/Project_DKAM_ZE_1/${file}_R2.fastq.gz"
 done
 # unzip the files
 gunzip *.fastq.gz
-#test change
-#test change2
 
 ### Make directories for processed fastqs
 cd ~/fastq2readcounts
@@ -57,10 +55,12 @@ do
 done
 
 ### compress unused fastqs to conserve space
-cd /group/kliebengrp/ajmuhich
-tar -czvf raw_fastq.tar.gz raw_fastq
-rm -r raw_fastq
-tar -czvf unpaired_fastq.tar.gz unpaired_fastq
-rm -r unpaired_fastq
+#cd /group/kliebengrp/ajmuhich
+#tar -czvf raw_fastq.tar.gz raw_fastq
+#rm -r raw_fastq
+#tar -czvf unpaired_fastq.tar.gz unpaired_fastq
+#rm -r unpaired_fastq
+
+cd ~/fastq2readcounts
 
 conda deactivate
