@@ -44,7 +44,7 @@ do
       -I 5 \
       -5 10 \
       -3 5 \
-      -x  ~/fastq2readcounts/reference/ChineseLong_DNA_index/ChineseLong_DNA  \
+      -x  ~/fastq2readcounts/reference/Cpepo_DNA_index/Cpepo_DNA  \
       -1 ~/fastq2readcounts/fastq/${file}_R1_trimmed_paired.fastq\
       -2 ~/fastq2readcounts/fastq/${file}_R2_trimmed_paired.fastq \
       --score-min L,0,-0.85 \
