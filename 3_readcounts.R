@@ -74,7 +74,7 @@ for (subdir in subdirs) {
       
       # Run featureCounts on the file with Host genes
       count_matrix <- featureCounts(file = file_name,
-                                    annot.ext = "~/fastq2readcounts/reference/Cpepo_v4.1.gtf",
+                                    annot.ext = "~/fastq2readcounts/reference/ChineseLong_v3.gtf",
                                     isGTFAnnotationFile = TRUE,
                                     isPairedEnd = TRUE)
       # Assign the count matrix to an object with a name based on the file name
