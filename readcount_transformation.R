@@ -7,8 +7,8 @@ library(ggplot2)
 library(edgeR)
 
 #read in data
-host <- read.csv("Bos_1/readcounts/Host_readcounts.csv")
-bcin <- read.csv("Bos_1/readcounts/Bcin_readcounts.csv")
+host <- read.csv("ZE_1/readcounts/Host_readcounts.csv")
+bcin <- read.csv("ZE_1/readcounts/Bcin_readcounts.csv")
 
 #clean up transcript names
 bcin$transcript <- sub("^transcript:", "", bcin$transcript)
@@ -18,19 +18,34 @@ bcin <- bcin %>% filter(!grepl("^E", transcript))
 
 ##### Collapse exon reads into total reads for each gene
 #make gene column
+# #Use this one for Csat
+# host <- host %>%
+# 	mutate(gene = sub("\\.[0-9].exon[0-9]+$", "", transcript)) %>%
+# 	select(transcript, gene, everything())
+#Use this one for Cpepo (e.g. Cp4.1_LG00_1000g00010.1:exon:001 becomes Cp4.1_LG00_1000g00010)
 host <- host %>%
-	mutate(gene = sub("\\.[0-9].exon[0-9]+$", "", transcript)) %>%
+	mutate(gene = sub("\\.[0-9]:exon:[0-9]+$", "", transcript)) %>%
 	select(transcript, gene, everything())
+#This one for Botrytis
 bcin <- bcin %>%
 	mutate(gene = sub("\\.[0-9]+$", "", transcript)) %>%
 	select(transcript, gene, everything())
+
 #add together counts within each gene for each sample
+#These for Csat:
+# host <- host %>%
+# 	group_by(gene) %>%
+# 	summarise(across(starts_with("B"), sum)) #starts_with("B") because my sample IDs are e.g. "B27_1"
+# bcin <- bcin %>%
+# 	group_by(gene) %>%
+# 	summarise(across(starts_with("B"), sum))
+#These for Cpep:
 host <- host %>%
 	group_by(gene) %>%
-	summarise(across(starts_with("B"), sum)) #starts_with("B") because my sample IDs are e.g. "B27_1"
+	summarise(across(starts_with("Z"), sum)) #starts_with("Z") because my sample IDs are e.g. "ZE27_1"
 bcin <- bcin %>%
 	group_by(gene) %>%
-	summarise(across(starts_with("B"), sum))
+	summarise(across(starts_with("Z"), sum))
 
 #check colnames match
 colnames(host) == colnames(bcin)
@@ -73,4 +88,7 @@ normalized_counts <- as.data.frame(normalized_counts)
 normalized_counts <- rownames_to_column(normalized_counts,var = "gene")
 
 #write csv
-write.csv(normalized_counts, "Bos_1/readcounts/norm_counts_all.csv", row.names = F, col.names = T)
+#For Csat
+#write.csv(normalized_counts, "Bos_1/readcounts/norm_counts_all.csv", row.names = F, col.names = T)
+#For Cpepo
+write.csv(normalized_counts, "ZE_1/readcounts/norm_counts_all.csv", row.names = F, col.names = T)
