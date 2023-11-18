@@ -15,11 +15,11 @@ readarray -t files < file_list.txt
 
 ### Get raw fastq files
 # set up symlink to your fastq files that is hosted in shared lab directory
-mkdir /group/kliebengrp/ajmuhich/raw_fastq
-ln -s /group/kliebengrp/ajmuhich/raw_fastq raw_fastq
+#mkdir /group/kliebengrp/ajmuhich/raw_fastq
+#ln -s /group/kliebengrp/ajmuhich/raw_fastq raw_fastq
 #put adapters.fa into raw_fastq
-cp reference/adapters.fa raw_fastq
-cd raw_fastq
+#cp reference/adapters.fa raw_fastq
+#cd raw_fastq
 # loop to download fastq files using your file list
 #do
 #  # Download R1 and R2 for the sample. Change path as needed
