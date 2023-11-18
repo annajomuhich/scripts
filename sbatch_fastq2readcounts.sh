@@ -12,10 +12,10 @@
 module load conda
 
 #run trimmomatic
-#bash scripts/trim.sh
+bash scripts/trim.sh
 
 #run qc
-#bash scripts/1_QC.sh
+bash scripts/1_QC.sh
 
 #run alignments
 bash scripts/2_alignment.sh
