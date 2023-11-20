@@ -15,19 +15,19 @@ readarray -t files < file_list.txt
 
 ### Get raw fastq files
 # set up symlink to your fastq files that is hosted in shared lab directory
-#mkdir /group/kliebengrp/ajmuhich/raw_fastq
-#ln -s /group/kliebengrp/ajmuhich/raw_fastq raw_fastq
+mkdir /group/kliebengrp/ajmuhich/raw_fastq
+ln -s /group/kliebengrp/ajmuhich/raw_fastq raw_fastq
 #put adapters.fa into raw_fastq
-#cp reference/adapters.fa raw_fastq
-#cd raw_fastq
+cp reference/adapters.fa raw_fastq
+cd raw_fastq
 # loop to download fastq files using your file list
-#do
-#  # Download R1 and R2 for the sample. Change path as needed
-#  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/32pbd2fb7i/Unaligned/Project_DKAM_BOS_2/${file}_R1.fastq.gz"
-#  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/32pbd2fb7i/Unaligned/Project_DKAM_BOS_2/${file}_R2.fastq.gz"
-#done
+do
+  # Download R1 and R2 for the sample. Change path as needed
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/736v9v5k32/Unaligned/Project_DKAM_BOS_3/${file}_R1.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/736v9v5k32/Unaligned/Project_DKAM_BOS_3/${file}_R2.fastq.gz"
+done
 # unzip the files
-#gunzip *.fastq.gz
+gunzip *.fastq.gz
 
 ### Make directories for processed fastqs
 cd ~/fastq2readcounts
