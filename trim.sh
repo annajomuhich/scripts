@@ -21,6 +21,7 @@ ln -s /group/kliebengrp/ajmuhich/raw_fastq raw_fastq
 cp reference/adapters.fa raw_fastq
 cd raw_fastq
 # loop to download fastq files using your file list
+for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
   wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/736v9v5k32/Unaligned/Project_DKAM_BOS_3/${file}_R1.fastq.gz"
