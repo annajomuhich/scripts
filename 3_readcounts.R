@@ -74,7 +74,7 @@ for (subdir in subdirs) {
       
       # Run featureCounts on the file with Host genes
       count_matrix <- featureCounts(file = file_name,
-                                    annot.ext = "~/fastq2readcounts/reference/Vunguiculata_540_v1.2.gene_exons.gtf",
+                                    annot.ext = "../../reference/Pvulgaris_442_v2.1.gene_exons.gtf",
                                     isGTFAnnotationFile = TRUE,
                                     isPairedEnd = TRUE)
       # Assign the count matrix to an object with a name based on the file name
@@ -85,7 +85,7 @@ for (subdir in subdirs) {
       
       # Run featureCounts on the file with Bcin genes
       count_matrix <- featureCounts(file = file_name,
-                                    annot.ext = "~/fastq2readcounts/reference/Botrytis_cinerea.ASM83294v1.5.gtf",
+                                    annot.ext = "../../reference/Botrytis_cinerea.ASM83294v1.5.gtf",
                                     isGTFAnnotationFile = TRUE,
                                     isPairedEnd = TRUE)
       # Assign the count matrix to an object with a name based on the file name
@@ -144,5 +144,5 @@ colnames(counts_Host_combined) <- gsub("_Host", "", colnames(counts_Host_combine
 colnames(counts_Bcin_combined) <- gsub("_Bcin", "", colnames(counts_Bcin_combined))
 
 #save em!
-write.csv(x = counts_Host_combined, file = "~/fastq2readcounts/readcounts/Host_readcounts.csv", row.names = F)
-write.csv(x = counts_Bcin_combined, file = "~/fastq2readcounts/readcounts/Bcin_readcounts.csv", row.names = F)
+write.csv(x = counts_Host_combined, file = "../readcounts/Host_readcounts.csv", row.names = F)
+write.csv(x = counts_Bcin_combined, file = "../readcounts/Bcin_readcounts.csv", row.names = F)
