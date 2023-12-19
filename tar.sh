@@ -1,4 +1,4 @@
-cd /group/kliebengrp/ajmuhich/IT_1
+cd /group/kliebengrp/ajmuhich/EUTC_bean
 echo "compressing fastq 1/3"
 tar -czvf fastq.tar.gz fastq
 rm -r fastq
