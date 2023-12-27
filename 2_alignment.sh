@@ -47,7 +47,7 @@ do
       -x  ~/fastq2readcounts/reference/Sp75_index/Sp75 \
       -1 ~/fastq2readcounts/fastq/${file}_R1_trimmed_paired.fastq\
       -2 ~/fastq2readcounts/fastq/${file}_R2_trimmed_paired.fastq \
-      --score-min L,0,-0.85 \
+      --score-min L,0,-0.65 \
       -S ${file}_Host.sam \
       --un-conc ~/fastq2readcounts/fastq/${file}_unmapped.fastq
   #convert Host sam to bam
