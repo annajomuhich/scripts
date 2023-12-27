@@ -1,7 +1,7 @@
-cd /group/kliebengrp/ajmuhich/EUTC_bean
-echo "compressing fastq 1/3"
-tar -czvf fastq.tar.gz fastq
-rm -r fastq
+cd /group/kliebengrp/ajmuhich/EUTC_spinach
+#echo "compressing fastq 1/3"
+#tar -czvf fastq.tar.gz fastq
+#rm -r fastq
 
 echo "compressing unpaired_fastq"
 tar -czvf unpaired_fastq.tar.gz unpaired_fastq
