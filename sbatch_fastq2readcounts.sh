@@ -18,10 +18,10 @@
 #bash scripts/1_QC.sh
 
 #run alignments
-bash scripts/2_alignment.sh
+#bash scripts/2_alignment.sh
 
 #generate alignment_summary.csv
-bash scripts/2a_alignment_summary1.sh
+#bash scripts/2a_alignment_summary1.sh
 module load R
 R CMD BATCH scripts/2b_alignment_summary2.R
 
