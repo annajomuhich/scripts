@@ -24,8 +24,8 @@ cd raw_fastq
 for file in "${files[@]}"
 do
   # Download R1 and R2 for the sample. Change path as needed
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/htovi6c3c/Unaligned/Project_DKCK_ATHB34_1_30/${file}_R1.fastq.gz"
-  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/htovi6c3c/Unaligned/Project_DKCK_ATHB34_1_30/${file}_R2.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/29x6x9hngj/Unaligned/Project_DKAM_UCC1/${file}_R1.fastq.gz"
+  wget -nv "http://slimsdata.genomecenter.ucdavis.edu/Data/29x6x9hngj/Unaligned/Project_DKAM_UCC1/${file}_R2.fastq.gz"
 done
 
 # unzip the files
