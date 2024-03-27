@@ -1,4 +1,4 @@
-cd /group/kliebengrp/ajmuhich/UCC1
+cd /group/kliebengrp/ajmuhich/Caroline_RNAseq
 echo "compressing fastq 1/3"
 tar -czvf fastq.tar.gz fastq
 rm -r fastq
